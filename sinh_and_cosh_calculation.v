@@ -64,9 +64,7 @@ begin
     sm=sm<<(24-i);
     s={ss,se,sm[23:1]};
 end
-//$display(s);
-
-//$display (p);
+    
 end
 endmodule
 
@@ -98,14 +96,6 @@ s={ss,se,sm[22:0]};
 end
 endmodule
 
-module comp(zc,di);
-input zc;
-output di;
-
-assign di=zc;
-
-endmodule
-
 module multiplyx (input s,input[31:0]a,output reg [31:0]A);//modules for finding sign
 always@(*) begin
 if(s==0) begin 
@@ -133,7 +123,7 @@ endmodule
 module cordic_sin_cos(zin, sinho, cosho, tanho);
 input [31:0] zin;
 output [31:0]sinho, cosho, tanho;
-//wire di;
+
 output [31:0] yy1;
 wire [31:0] X1[0:9];
 wire [31:0] Y1[0:9];
@@ -152,12 +142,11 @@ assign yc[1]=yin;
 assign zc[1]= zin;
 assign xc[2]=xin;
 assign yc[2]= 32'b00111111000000000000000000000000;
-//assign zc[2]= 32'b00111110101100111000111011110011;
-//multiplyy m10(zin[31],atan_table[00],ZZ);
+
 float_add f10({1'b0,zin[30:0]},{1'b1,atan_table[00][30:0]},zc[2]);
 
 wire signed [31:0] atan_table [0:9];
-//sign atan_table[00] = 32'b00100000000000000000000000000000; // 45.000 degrees -> atan(2^0)
+
    assign atan_table[00] = 32'b00111111000011001001111101010100; // 26.565 degrees -> atan(2^-1)
    assign atan_table[01] = 32'b00111110100000101100010101111000; // 14.036 degrees -> atan(2^-2)
    assign atan_table[02] = 32'b00111110000000001010110001001001; // atan(2^-3)
