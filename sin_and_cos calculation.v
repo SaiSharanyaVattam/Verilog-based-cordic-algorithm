@@ -70,7 +70,7 @@ end
 endmodule
 
 
-module multiplyx (input s,input[31:0]a,output reg [31:0]A);// module for deciding the sign which inturn decides the direction of rotation
+module multiplyx (input s,input[31:0]a,output reg [31:0]A);// module for deciding the sign
 always@(*) begin
 if(s==0) begin 
 A=a;
